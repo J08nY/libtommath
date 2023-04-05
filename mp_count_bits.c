@@ -1,4 +1,5 @@
 #include "tommath_private.h"
+#include "bear.h"
 #ifdef MP_COUNT_BITS_C
 /* LibTomMath, multiple-precision integer library -- Tom St Denis */
 /* SPDX-License-Identifier: Unlicense */
@@ -19,10 +20,6 @@ int mp_count_bits(const mp_int *a)
 
    /* take the last digit and count the bits in it */
    q = a->dp[a->used - 1];
-   while (q > 0u) {
-      ++r;
-      q >>= 1u;
-   }
-   return r;
+   return r + (int)BIT_LENGTH(q);
 }
 #endif
