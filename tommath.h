@@ -54,12 +54,18 @@ extern "C" {
 
 #if defined(MP_16BIT)
 typedef uint16_t             mp_digit;
+typedef int16_t              mp_sdigit;
 #   define MP_DIGIT_BIT 15
+#   define MP_DIGIT_SIZE 16
 #elif ((defined (MP_64BIT)) && !(defined(MP_31BIT)) )
 typedef uint64_t mp_digit;
+typedef int64_t  mp_sdigit;
 #   define MP_DIGIT_BIT 60
+#   define MP_DIGIT_SIZE 64
 #else
 typedef uint32_t             mp_digit;
+typedef int32_t              mp_sdigit;
+#   define MP_DIGIT_SIZE 32
 #   ifdef MP_31BIT
 /*
  * This is an extension that uses 31-bit digits.

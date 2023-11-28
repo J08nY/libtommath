@@ -136,7 +136,7 @@ else
 endif
 
 HEADERS_PUB=tommath.h
-HEADERS=tommath_private.h tommath_class.h tommath_superclass.h tommath_cutoffs.h $(HEADERS_PUB)
+HEADERS=tommath_private.h tommath_class.h tommath_superclass.h tommath_cutoffs.h bear.h $(HEADERS_PUB)
 
 #LIBPATH  The directory for libtommath to be installed to.
 #INCPATH  The directory to install the header files for libtommath.

@@ -1,5 +1,6 @@
 #include <inttypes.h>
 #include "shared.h"
+#include "bear.h"
 
 #define S_MP_RAND_JENKINS_C
 #include "s_mp_rand_jenkins.c"
@@ -114,6 +115,7 @@ static int test_trivial_stuff(void)
    DO(mp_neg(&a, &b));
    EXPECT(mp_cmp(&a, &b) == MP_GT);
    EXPECT(mp_cmp(&b, &a) == MP_LT);
+   EXPECT(mp_cmp_mag(&a, &b) == MP_EQ);
    EXPECT(mp_isneg(&b));
    /* a: 5-> a: -5 */
    DO(mp_neg(&a, &a));
@@ -128,6 +130,9 @@ static int test_trivial_stuff(void)
    EXPECT(mp_get_i32(&b) == -4);
    EXPECT(mp_get_u32(&b) == (uint32_t)-4);
    EXPECT(mp_get_mag_u32(&b) == 4);
+   EXPECT(mp_cmp_mag(&a, &b) == MP_GT);
+   EXPECT(mp_cmp_mag(&b, &a) == MP_LT);
+   EXPECT(mp_count_bits(&a) == 3);
    /* a: -5-> b: 1 */
    DO(mp_add_d(&a, 6u, &b));
    EXPECT(mp_get_u32(&b) == 1);
