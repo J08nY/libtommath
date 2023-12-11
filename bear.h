@@ -219,10 +219,10 @@ BIT_LENGTH(mp_digit x)
     mp_digit k, c;
 
     k = NEQ(x, 0);
-#ifdef MP_64BIT
+#if defined(MP_64BIT)
     c = GT(x, 0xFFFFFFFF); x = MUX(c, x >> 32, x); k += c << 5;
     c = GT(x, 0x0000FFFF); x = MUX(c, x >> 16, x); k += c << 4;
-#elifdef MP_32BIT
+#elif defined(MP_32BIT)
     c = GT(x, 0x0000FFFF); x = MUX(c, x >> 16, x); k += c << 4;
 #endif
     c = GT(x, 0x000000FF); x = MUX(c, x >>  8, x); k += c << 3;
